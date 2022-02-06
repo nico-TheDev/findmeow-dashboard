@@ -1,8 +1,14 @@
 import React from "react";
-import { Admin, Resource, ListGuesser, EditGuesser } from "react-admin";
+import {
+    Admin,
+    Resource,
+    ListGuesser,
+    EditGuesser,
+    ShowGuesser,
+} from "react-admin";
 import jsonServerProvider from "ra-data-json-server";
 
-import { UserList } from "./components/UserComponent";
+import { UserList, UserShow } from "./components/UserComponent";
 import { PostList, PostEdit, PostCreate } from "./components/PostComponent";
 
 import BookIcon from "@mui/icons-material/Book";
@@ -24,7 +30,7 @@ export default function App() {
             authProvider={authProvider}
         >
             {/* <Resource name="users" list={UserList} icon={UserIcon} /> */}
-            <Resource name="users" list={UserList} />
+            <Resource name="users" list={UserList} show={UserShow} />
             <Resource
                 name="posts"
                 list={PostList}
@@ -32,6 +38,12 @@ export default function App() {
                 create={PostCreate}
                 icon={BookIcon}
             />
+            {/* <Resource
+                name="posts"
+                list={PostList}
+                edit={PostEdit}
+               
+            /> */}
         </Admin>
     );
 }

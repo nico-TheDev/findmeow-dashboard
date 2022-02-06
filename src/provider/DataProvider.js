@@ -1,7 +1,7 @@
 import { fetchUtils } from "react-admin";
 import { stringify } from "query-string";
 
-const apiUrl = "http://localhost:3000/admin";
+const apiUrl = process.env.REACT_APP_SERVER_HOST;
 const httpClient = fetchUtils.fetchJson;
 
 const dataProvider = {
@@ -26,7 +26,7 @@ const dataProvider = {
 
     getOne: (resource, params) =>
         httpClient(`${apiUrl}/${resource}/${params.id}`).then(({ json }) => ({
-            data: json,
+            data: json.data,
         })),
 
     getMany: (resource, params) => {
@@ -34,7 +34,9 @@ const dataProvider = {
             filter: JSON.stringify({ id: params.ids }),
         };
         const url = `${apiUrl}/${resource}?${stringify(query)}`;
-        return httpClient(url).then(({ json }) => ({ data: json }));
+        return httpClient(url).then(({ json }) => {
+            return { data: json.data };
+        });
     },
 
     getManyReference: (resource, params) => {

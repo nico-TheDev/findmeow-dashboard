@@ -12,9 +12,14 @@ import {
     TextInput,
     Create,
     SimpleList,
+    BooleanField,
+    DateField,
+    BooleanInput,
 } from "react-admin";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
+
+import CustomImageField from "./CustomImageField";
 
 const postFilters = [
     <TextInput source="q" label="Search" alwaysOn />,
@@ -39,12 +44,20 @@ export const PostList = (props) => {
                 />
             ) : (
                 <Datagrid rowClick="edit">
-                    <TextField source="id" />
                     <ReferenceField source="userId" reference="users">
                         <TextField source="name" />
                     </ReferenceField>
-                    <TextField source="title" />
-                    <EditButton />{" "}
+                    <TextField source="name" label="Pet Name" />
+                    <TextField source="breed" />
+                    <TextField source="location" />
+                    <TextField source="type" />
+                    <BooleanField source="isCompleted" label="Completion" />
+                    <DateField source="createdAt" label="Post Created" />
+                    <DateField
+                        source="updatedAt"
+                        label="Last Updated by Owner"
+                    />
+                    <EditButton />
                 </Datagrid>
             )}
         </List>
@@ -52,18 +65,22 @@ export const PostList = (props) => {
 };
 
 const PostTitle = ({ record }) => {
-    return <span>Post {record ? `"${record.title}"` : ""}</span>;
+    return <span>Post {record ? `"${record.name}"` : ""}</span>;
 };
 
 export const PostEdit = (props) => (
     <Edit title={<PostTitle />} {...props}>
         <SimpleForm>
-            <TextInput disabled source="id" />
             <ReferenceInput source="userId" reference="users">
                 <SelectInput optionText="name" />
             </ReferenceInput>
-            <TextInput source="title" />
-            <TextInput source="body" multiline />
+            <CustomImageField source="image" />
+            <TextInput source="name" />
+            <TextInput source="breed" />
+            <TextInput source="description" multiline />
+            <TextInput source="location" />
+            <TextInput source="type" disabled />
+            <BooleanInput source="isCompleted" />
         </SimpleForm>
     </Edit>
 );
@@ -71,12 +88,16 @@ export const PostEdit = (props) => (
 export const PostCreate = (props) => (
     <Create {...props}>
         <SimpleForm>
-            <TextInput disabled source="id" />
             <ReferenceInput source="userId" reference="users">
                 <SelectInput optionText="name" />
             </ReferenceInput>
-            <TextInput source="title" />
-            <TextInput source="body" multiline />
+            <TextInput source="name" />
+            <TextInput source="breed" />
+            <TextInput source="description" multiline />
+            <TextInput source="location" />
+            <TextInput source="image" />
+            <TextInput source="type" />
+            <BooleanInput source="isCompleted" />
         </SimpleForm>
     </Create>
 );
