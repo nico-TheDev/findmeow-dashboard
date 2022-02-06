@@ -1,7 +1,7 @@
 import { fetchUtils } from "react-admin";
 import { stringify } from "query-string";
 
-const apiUrl = "https://my.api.com/";
+const apiUrl = "http://localhost:3000/admin";
 const httpClient = fetchUtils.fetchJson;
 
 const dataProvider = {
@@ -10,15 +10,18 @@ const dataProvider = {
         const { field, order } = params.sort;
         const query = {
             sort: JSON.stringify([field, order]),
-            range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
+            pagination: JSON.stringify({ page, perPage }),
             filter: JSON.stringify(params.filter),
         };
         const url = `${apiUrl}/${resource}?${stringify(query)}`;
 
-        return httpClient(url).then(({ headers, json }) => ({
-            data: json,
-            total: parseInt(headers.get("content-range").split("/").pop(), 10),
-        }));
+        return httpClient(url).then(({ headers, json }) => {
+            console.log(json);
+            return {
+                data: json.data,
+                total: json.total,
+            };
+        });
     },
 
     getOne: (resource, params) =>

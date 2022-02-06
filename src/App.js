@@ -10,10 +10,10 @@ import UserIcon from "@mui/icons-material/Group";
 
 import Dashboard from "./components/Dashboard";
 
-// import dataProvider from './provider/DataProvider'
+import dataProvider from "./provider/DataProvider";
 import authProvider from "./provider/AuthProvider";
 import theme from "./provider/ThemeProvider";
-const dataProvider = jsonServerProvider("https://jsonplaceholder.typicode.com");
+// const dataProvider = jsonServerProvider("https://jsonplaceholder.typicode.com");
 
 export default function App() {
     return (
@@ -23,7 +23,8 @@ export default function App() {
             dashboard={Dashboard}
             authProvider={authProvider}
         >
-            <Resource name="users" list={UserList} icon={UserIcon} />
+            {/* <Resource name="users" list={UserList} icon={UserIcon} /> */}
+            <Resource name="users" list={UserList} />
             <Resource
                 name="posts"
                 list={PostList}
