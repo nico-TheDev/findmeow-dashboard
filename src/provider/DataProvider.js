@@ -93,7 +93,11 @@ const dataProvider = {
         };
         return httpClient(`${apiUrl}/${resource}?${stringify(query)}`, {
             method: "DELETE",
-        }).then(({ json }) => ({ data: json }));
+        }).then(({ json }) => {
+            return {
+                data: json.data,
+            };
+        });
     },
 };
 

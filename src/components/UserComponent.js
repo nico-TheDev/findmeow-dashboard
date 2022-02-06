@@ -7,6 +7,7 @@ import {
     DateField,
     Show,
     SimpleShowLayout,
+    DeleteButton,
 } from "react-admin";
 import CustomImageField from "./CustomImageField";
 
@@ -36,6 +37,7 @@ export const UserShow = (props) => (
             <TextField source="username" />
             <TextField source="location" />
             <TextField source="contact" />
+            <DeleteButton />
         </SimpleShowLayout>
     </Show>
 );

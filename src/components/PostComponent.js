@@ -72,7 +72,7 @@ export const PostEdit = (props) => (
     <Edit title={<PostTitle />} {...props}>
         <SimpleForm>
             <ReferenceInput source="userId" reference="users">
-                <SelectInput optionText="name" />
+                <SelectInput optionText="name" disabled />
             </ReferenceInput>
             <CustomImageField source="image" />
             <TextInput source="name" />
@@ -95,7 +95,6 @@ export const PostCreate = (props) => (
             <TextInput source="breed" />
             <TextInput source="description" multiline />
             <TextInput source="location" />
-            <TextInput source="image" />
             <TextInput source="type" />
             <BooleanInput source="isCompleted" />
         </SimpleForm>
