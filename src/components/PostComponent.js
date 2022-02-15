@@ -84,19 +84,3 @@ export const PostEdit = (props) => (
         </SimpleForm>
     </Edit>
 );
-
-export const PostCreate = (props) => (
-    <Create {...props}>
-        <SimpleForm>
-            <ReferenceInput source="userId" reference="users">
-                <SelectInput optionText="name" />
-            </ReferenceInput>
-            <TextInput source="name" />
-            <TextInput source="breed" />
-            <TextInput source="description" multiline />
-            <TextInput source="location" />
-            <TextInput source="type" />
-            <BooleanInput source="isCompleted" />
-        </SimpleForm>
-    </Create>
-);

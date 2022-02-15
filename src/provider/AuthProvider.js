@@ -1,13 +1,19 @@
 const authProvider = {
     // called when the user attempts to log in
-    login: ({ username }) => {
-        localStorage.setItem("username", username);
-        // accept all username/password combinations
-        return Promise.resolve();
+    login: ({ username, password }) => {
+        if (username === "admin" && password === "admin9000") {
+            localStorage.setItem("username", username);
+            localStorage.setItem("password", password);
+            // accept all username/password combinations
+            return Promise.resolve();
+        } else {
+            return Promise.reject();
+        }
     },
     // called when the user clicks on the logout button
     logout: () => {
         localStorage.removeItem("username");
+        localStorage.removeItem("password");
         return Promise.resolve();
     },
     // called when the API returns an error
