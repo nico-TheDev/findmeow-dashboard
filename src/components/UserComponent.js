@@ -12,7 +12,7 @@ import {
 import CustomImageField from "./CustomImageField";
 
 export const UserList = (props) => (
-    <List {...props}>
+    <List {...props} exporter={false}>
         <Datagrid rowClick="show">
             <TextField source="name" />
             <TextField source="username" />

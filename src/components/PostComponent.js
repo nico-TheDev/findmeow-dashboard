@@ -10,7 +10,6 @@ import {
     ReferenceInput,
     SelectInput,
     TextInput,
-    Create,
     SimpleList,
     BooleanField,
     DateField,
@@ -21,19 +20,19 @@ import { useMediaQuery } from "@mui/material";
 
 import CustomImageField from "./CustomImageField";
 
-const postFilters = [
-    <TextInput source="q" label="Search" alwaysOn />,
-    <ReferenceInput source="userId" label="User" reference="users" allowEmpty>
-        <SelectInput optionText="name" />
-    </ReferenceInput>,
-];
+// const postFilters = [
+//     <TextInput source="q" label="Search" alwaysOn />,
+//     <ReferenceInput source="userId" label="User" reference="users" allowEmpty>
+//         <SelectInput optionText="name" />
+//     </ReferenceInput>,
+// ];
 
 export const PostList = (props) => {
     const theme = useTheme();
     const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
     return (
-        <List {...props}>
+        <List {...props} exporter={false}>
             {isSmall ? (
                 <SimpleList
                     primaryText={(record) => record.title}
